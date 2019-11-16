@@ -100,10 +100,10 @@ module Deribit
     "private/enable_cancel_on_disconnect" => [],
     "private/disable_cancel_on_disconnect" => [],
     "private/logout" => [],
+    "private/subscribe" => %i(channels),
     "public/hello" => %i(client_name client_version),
     "public/set_heartbeat" => %i(interval),
     "public/disable_heartbeat" => [],
-    "public/subscribe" => %i(channels),
     "public/unsubscribe" => %i(channels),
   }
 
