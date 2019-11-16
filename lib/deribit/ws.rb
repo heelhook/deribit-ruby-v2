@@ -71,7 +71,6 @@ module Deribit
       instance = self
       @socket.on :message do |msg|
         # debug:
-        puts "msg = #{msg}"
         begin
           if msg.type == :text
             json = JSON.parse(msg.data, symbolize_names: true)
@@ -98,7 +97,7 @@ module Deribit
       @ids_stack[args[:id]] = { method: method, path: path, params: params }
 
       # puts debug:
-      puts "Sending: #{args}"
+      # puts "Sending: #{args}"
       socket.send(args.to_json)
     end
 
