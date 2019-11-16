@@ -13,7 +13,7 @@ module Deribit
         # debug
         # puts "GOT HEARTBEAT, json: #{json}"
         if json.dig(:params, :type) == "test_request"
-          ws.send(path: "public/test")
+          ws.test
         end
       end
 
