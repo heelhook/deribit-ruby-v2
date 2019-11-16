@@ -69,6 +69,7 @@ module Deribit
       @socket = WebSocket::Client::Simple.connect(url)
 
       instance = self
+      @socket.on(:error) { |e| instance.handlers.each {|handler| handler.process(e, method: :received_error, ws: self) } }
       @socket.on :message do |msg|
         # debug:
         begin
@@ -81,11 +82,11 @@ module Deribit
             instance.connect
           end
         rescue StandardError => error
+          instance.handlers.each {|handler| handler.process(json, method: :received_error, ws: self) }
           puts "Error #{error.class}: #{error.full_message}\nGot message: #{json.inspect}"
         end
       end
 
-      @socket.on(:error) { |e| puts e }
     end
 
     def api_send(path:, params: {})
