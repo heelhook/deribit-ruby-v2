@@ -18,7 +18,11 @@ module Deribit
       end
 
       def subscribe(json)
-        @subscriptions += json[:result]
+        if json[:result]
+          @subscriptions += json[:result]
+        else
+          raise "Received a subscribe call without a json[:result]: #{json.inspect}"
+        end
       end
 
       def unsubscribe(json)
