@@ -108,7 +108,7 @@ module Deribit
     end
 
     def set_server_url(test_server)
-      (ENV["DERIBIT_SERVER"].downcase == "test" || test_server) ? WS_TEST_URL : WS_SERVER_URL
+      (ENV["DERIBIT_SERVER"] == "test" || test_server) ? WS_TEST_URL : WS_SERVER_URL
     end
   end
 end
